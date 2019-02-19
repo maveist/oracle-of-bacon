@@ -3,8 +3,8 @@ package com.serli.oracle.of.bacon.repository;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
-
 import java.util.Optional;
+import static com.mongodb.client.model.Filters.eq; 
 
 public class MongoDbRepository {
     private final MongoCollection<Document> actorCollection;
