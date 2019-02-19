@@ -57,6 +57,14 @@ bin/neo4j start
 * Importer les données à l'iade de ElasticSearch dans `com.serli.oracle.of.bacon.loader.elasticsearch.CompletionLoader` (les liens suivants pourront vous aider : [search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), [mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) et [suggest](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html))
 * Implémenter la suggestion sur le nom des acteurs dans `com.serli.oracle.of.bacon.repository.ElasticSearchRepository#getActorsSuggests`
 * Implémenter la recherche des acteurs par nom à l'aide de MongoDB dans `com.serli.oracle.of.bacon.repository.MongoDbRepository#getActorByName`
+```java
+return Optional.ofNullable(
+  this
+    .actorCollection
+    .find(eq("name", name))
+    .first()
+);
+```
 
 L'évaluation de votre travail sera effectuée selon les critères suivants :
 * Bon fonctionnement (First make it work)
