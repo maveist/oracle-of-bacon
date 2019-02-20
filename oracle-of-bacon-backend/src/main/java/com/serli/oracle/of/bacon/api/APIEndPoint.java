@@ -21,10 +21,14 @@ public class APIEndPoint {
         elasticSearchRepository = new ElasticSearchRepository();
         redisRepository = new RedisRepository();
         mongoDbRepository = new MongoDbRepository();
+
+
     }
 
     @Get("bacon-to?actor=:actorName")
     public String getConnectionsToKevinBacon(String actorName) {
+
+        this.redisRepository.addSearch(actorName);
 
         return "[\n" +
                 "{\n" +
@@ -69,20 +73,12 @@ public class APIEndPoint {
 
     @Get("suggest?q=:searchQuery")
     public List<String> getActorSuggestion(String searchQuery) throws IOException {
-        return Arrays.asList("Niro, Chel",
-                "Senanayake, Niro",
-                "Niro, Juan Carlos",
-                "de la Rua, Niro",
-                "Niro, Simão");
+        return elasticSearchRepository.getActorsSuggests(searchQuery);
     }
 
     @Get("last-searches")
     public List<String> last10Searches() {
-        return Arrays.asList("Peckinpah, Sam",
-                "Robbins, Tim (I)",
-                "Freeman, Morgan (I)",
-                "De Niro, Robert",
-                "Pacino, Al (I)");
+        return this.redisRepository.getLastTenSearches();
     }
 
     @Get("actor?name=:actorName")

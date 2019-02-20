@@ -16,8 +16,7 @@ services:
      ports:
       - 27017:27017
 
-   neo4j:
-     image: 'neo4j:3.0'
-     ports:
-      - 7474:7474
-      - 7687:7687
+   redis:
+      image: 'redis'
+      ports:
+        - 6379:6379
